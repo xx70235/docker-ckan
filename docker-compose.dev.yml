@@ -21,7 +21,7 @@ services:
     volumes:
       - ./src:/srv/app/src_extensions
       - ckan_storage:/var/lib/ckan
-    
+      - ./ckan_src:/srv/app/src/ckan
 
   datapusher:
     container_name: datapusher
