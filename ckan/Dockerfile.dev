@@ -7,13 +7,14 @@ MAINTAINER Your Name Here <you@example.com>
 ARG TZ
 RUN cp /usr/share/zoneinfo/$TZ /etc/localtime
 RUN echo $TZ > /etc/timezone
-
+ENV PROJ_DIR=/usr
 # Install any extensions needed by your CKAN instance
 # (Make sure to add the plugins to CKAN__PLUGINS in the .env file)
 # For instance:
-RUN bin/bash -c apk add libgeos-c1 && \
-    pip install -e git+https://github.com/ckan/ckanext-spatial.git@v2.0.0#egg=ckanext-spatial && \
-    pip install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/v2.0.0/requirements.txt
+RUN apk add --repository dl-cdn.alpinelinux.org/alpine/edge/testing geos-dev && \
+    apk add proj-dev proj-util && \
+    pip3 install -e git+https://github.com/ckan/ckanext-spatial.git@v2.0.0#egg=ckanext-spatial && \
+    pip3 install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/v2.0.0/requirements.txt
 #RUN pip install -e git+https://github.com/ckan/ckanext-pages.git#egg=ckanext-pages && \
 #    pip install -e git+https://github.com/ckan/ckanext-dcat.git@v0.0.6#egg=ckanext-dcat && \
    
