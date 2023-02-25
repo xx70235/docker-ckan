@@ -44,7 +44,7 @@ services:
 
   solr:
     container_name: solr
-    image: ckan/ckan-solr:2.9-solr8
+    image: ckan/ckan-solr:2.9-solr8-spatial
     volumes:
       - solr_data:/var/solr
 

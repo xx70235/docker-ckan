@@ -14,7 +14,8 @@ ENV PROJ_DIR=/usr
 RUN apk add --repository dl-cdn.alpinelinux.org/alpine/edge/testing geos-dev && \
     apk add proj-dev proj-util && \
     pip3 install -e git+https://github.com/ckan/ckanext-spatial.git@v2.0.0#egg=ckanext-spatial && \
-    pip3 install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/v2.0.0/requirements.txt
+    pip3 install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/v2.0.0/requirements.txt && \
+    
 #RUN pip install -e git+https://github.com/ckan/ckanext-pages.git#egg=ckanext-pages && \
 #    pip install -e git+https://github.com/ckan/ckanext-dcat.git@v0.0.6#egg=ckanext-dcat && \
    

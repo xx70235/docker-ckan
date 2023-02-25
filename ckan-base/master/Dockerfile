@@ -10,7 +10,7 @@ ENV GIT_URL=https://github.com/ckan/ckan.git
 # CKAN version to build
 ENV GIT_BRANCH=master
 # Customize these on the .env file if needed
-ENV CKAN_SITE_URL=http://localhost:5000
+ENV CKAN_SITE_URL=http://localhost:30225
 ENV CKAN__PLUGINS image_view text_view recline_view datastore datapusher envvars
 
 # UWSGI options
@@ -96,8 +96,8 @@ ONBUILD RUN mkdir /docker-entrypoint.d
 
 RUN chown ckan -R /srv/app
 
-EXPOSE 5000
+EXPOSE 30225
 
-HEALTHCHECK --interval=60s --timeout=5s --retries=5 CMD curl --fail http://localhost:5000/api/3/action/status_show || exit 1
+HEALTHCHECK --interval=60s --timeout=5s --retries=5 CMD curl --fail http://localhost:30225/api/3/action/status_show || exit 1
 
 CMD ["/srv/app/start_ckan.sh"]
