@@ -17,12 +17,13 @@ services:
       - redis
       - datapusher
     ports:
-      - "0.0.0.0:${CKAN_PORT}:30225"
+      - "0.0.0.0:${CKAN_PORT}:5000"
     volumes:
       - ./src:/srv/app/src_extensions
       - ckan_storage:/var/lib/ckan
       - ./ckan_src:/srv/app/src/ckan
       - ./ckanext-spatial_src:/srv/app/src/ckanext-spatial
+      - ./ckanext-tif-imageview_src:/srv/app/src/ckanext-tif-imageview
 
   datapusher:
     container_name: datapusher
