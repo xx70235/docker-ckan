@@ -12,13 +12,15 @@ ENV PROJ_DIR=/usr
 # (Make sure to add the plugins to CKAN__PLUGINS in the .env file)
 # For instance:
 RUN apk add --repository dl-cdn.alpinelinux.org/alpine/edge/testing geos-dev && \
-    apk add proj-dev proj-util jpeg-dev && \
-    pip3 install -e git+https://github.com/xx70235/ckanext-spatial.git@v2.0.0#egg=ckanext-spatial && \
-    pip3 install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/v2.0.0/requirements.txt && \
-    pip3 install -e git+https://github.com/xx70235/ckanext-tif-imageview.git@v1.0.0#egg=ckanext-tif-imageview && \
-    pip3 install -r https://raw.githubusercontent.com/xx70235/ckanext-tif-imageview/develop/requirements.txt && \
-    pip3 install -e git+https://github.com/xx70235/ckanext-geoview.git@v1.0.0#egg=ckanext-geoview && \
+    apk add proj-dev proj-util jpeg-dev gdal-dev 
+RUN pip3 install -e git+https://github.com/xx70235/ckanext-spatial.git@v2.0.0#egg=ckanext-spatial && \
+    pip3 install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/v2.0.0/requirements.txt
+RUN pip3 install -e git+https://github.com/xx70235/ckanext-tif-imageview.git@v1.0.1#egg=ckanext-tif-imageview && \
+    pip3 install -r https://raw.githubusercontent.com/xx70235/ckanext-tif-imageview/develop/requirements.txt
+RUN pip3 install -e git+https://github.com/xx70235/ckanext-geoview.git@v1.0.0#egg=ckanext-geoview && \
     pip3 install -r https://raw.githubusercontent.com/xx70235/ckanext-geoview/master/pip-requirements.txt
+RUN pip3 install -e git+https://github.com/xx70235/ckanext-cloudstorage.git@v1.0.2#egg=ckanext-cloudstorage && \
+    pip3 install -r https://raw.githubusercontent.com/xx70235/ckanext-cloudstorage/master/requirements.txt
 
     
 #RUN pip install -e git+https://github.com/ckan/ckanext-pages.git#egg=ckanext-pages && \
