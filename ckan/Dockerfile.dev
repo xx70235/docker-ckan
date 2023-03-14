@@ -1,7 +1,7 @@
 # TODO: switch to 2.10 when it's out
 FROM openknowledge/ckan-dev:2.9
-
-MAINTAINER Your Name Here <you@example.com>
+RUN set -eux && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
+MAINTAINER Yunfei Xu <xuyf@nao.cas.cn>
 
 # Set timezone
 ARG TZ
@@ -13,6 +13,7 @@ ENV PROJ_DIR=/usr
 # For instance:
 RUN apk add --repository dl-cdn.alpinelinux.org/alpine/edge/testing geos-dev && \
     apk add proj-dev proj-util jpeg-dev gdal-dev 
+RUN pip3 config set global.index-url https://mirrors.aliyun.com/pypi/simple
 RUN pip3 install -e git+https://github.com/xx70235/ckanext-spatial.git@v2.0.0#egg=ckanext-spatial && \
     pip3 install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/v2.0.0/requirements.txt
 RUN pip3 install -e git+https://github.com/xx70235/ckanext-tif-imageview.git@v1.0.1#egg=ckanext-tif-imageview && \

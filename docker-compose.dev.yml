@@ -21,10 +21,10 @@ services:
     volumes:
       - ./src:/srv/app/src_extensions
       - ckan_storage:/var/lib/ckan
-      - ./ckan_src:/srv/app/src/ckan
-      - ./ckanext-spatial_src:/srv/app/src/ckanext-spatial
-      - ./ckanext-tif-imageview_src:/srv/app/src/ckanext-tif-imageview
-      - ./ckanext-cloudstorage_src:/srv/app/src/ckanext-cloudstorage
+      # - ./ckan_src:/srv/app/src/ckan
+      #- ./ckanext-spatial_src:/srv/app/src/ckanext-spatial
+      #- ./ckanext-tif-imageview_src:/srv/app/src/ckanext-tif-imageview
+      #- ./ckanext-cloudstorage_src:/srv/app/src/ckanext-cloudstorage
 
 
   datapusher:
