@@ -1,5 +1,5 @@
 # TODO: switch to 2.10 when it's out
-FROM openknowledge/ckan-dev:2.9
+FROM openknowledge/ckan-dev:2.10
 RUN set -eux && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 MAINTAINER Yunfei Xu <xuyf@nao.cas.cn>
 
@@ -22,8 +22,14 @@ RUN pip3 install -e git+https://github.com/xx70235/ckanext-geoview.git@v1.0.0#eg
     pip3 install -r https://raw.githubusercontent.com/xx70235/ckanext-geoview/master/pip-requirements.txt
 RUN pip3 install -e git+https://github.com/xx70235/ckanext-cloudstorage.git@v1.0.2#egg=ckanext-cloudstorage && \
     pip3 install -r https://raw.githubusercontent.com/xx70235/ckanext-cloudstorage/master/requirements.txt
-
-    
+RUN pip3 install xarray rasterio python-dateutil ckanapi
+RUN apk add bsd-compat-headers gcc g++ make curl-dev libpng-dev libxml2-dev hdf5-dev netcdf-dev proj-dev
+RUN wget https://code.mpimet.mpg.de/attachments/download/27654/cdo-2.1.1.tar.gz
+RUN tar -zxvf cdo-2.1.1.tar.gz 
+WORKDIR /srv/app/cdo-2.1.1 
+RUN ./configure --with-netcdf=/usr --with-hdf5=/usr
+RUN make & make install
+RUN pip3 install cdo
 #RUN pip install -e git+https://github.com/ckan/ckanext-pages.git#egg=ckanext-pages && \
 #    pip install -e git+https://github.com/ckan/ckanext-dcat.git@v0.0.6#egg=ckanext-dcat && \
    
